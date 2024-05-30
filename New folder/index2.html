@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Sign Up</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        .container h2 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .btn-primary {
+            background-color: #00ff00;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            padding: 15px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #00cc00;
+        }
+        .is-invalid {
+    border-color: #ff0000; /* Red border for invalid fields */
+}
+
+    </style>
+</head>
+<body>
+<div class="container" id="container">
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+        <input type="text" class="form-control" placeholder="Name" id="signup-name" required>
+        <input type="email" class="form-control" placeholder="Email" id="signup-email" required>
+        <input type="password" class="form-control" placeholder="Password" id="signup-password" required>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <a href="#" class="text-center d-block mt-3" id="login-link">Already have an account? Log in</a>
+    </form>
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('signup-form');
+        const nameInput = document.getElementById('signup-name');
+        const emailInput = document.getElementById('signup-email');
+        const passwordInput = document.getElementById('signup-password');
+    
+        form.addEventListener('submit', function (event) {
+            // Clear previous invalid classes
+            [nameInput, emailInput, passwordInput].forEach(input => {
+                input.classList.remove('is-invalid');
+            });
+    
+            let isValidForm = true;
+            // Check each input for validity
+            [nameInput, emailInput, passwordInput].forEach(input => {
+                if (!input.value.trim() || !input.checkValidity()) {
+                    input.classList.add('is-invalid');
+                    isValidForm = false;
+                }
+            });
+    
+            // If the form is not valid, prevent submission and notify the user
+            if (!isValidForm) {
+                event.preventDefault();
+                alert('Please fill in all fields correctly.');
+                return;
+            }
+    
+            // If all inputs are valid, you might continue with form submission or AJAX request
+            console.log("Name:", nameInput.value.trim());
+            console.log("Email:", emailInput.value.trim());
+            console.log("Password:", passwordInput.value);
+            // Uncomment the next line to proceed with redirection or other logic
+            // window.location.href = 'login.html';
+        });
+    
+        // Event listener for switching to login page
+        document.getElementById('login-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
+        });
+    });
+    </script>
+    
+
+</body>
+</html>
